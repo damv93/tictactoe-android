@@ -1,3 +1,8 @@
 package com.damv93.tictactoe.game.model
 
-data class TicTacToeBoardState()
+import com.damv93.libs.base.viewstate.BaseViewState
+
+data class TicTacToeBoardState(
+    val board: List<List<String>> = emptyList(),
+    val currentPlayer: String = ""
+) : BaseViewState
