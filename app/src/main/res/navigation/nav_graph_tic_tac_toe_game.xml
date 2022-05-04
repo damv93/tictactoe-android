@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_tic_tac_toe_game"
+    app:startDestination="@id/fragment_ticTacToeBoard">
+
+    <fragment
+        android:id="@+id/fragment_ticTacToeBoard"
+        android:name="com.damv93.tictactoe.game.TicTacToeBoardFragment"
+        android:label="TicTacToeBoardFragment"
+        tools:layout="@layout/fragment_tic_tact_toe_board" />
+
+</navigation>
