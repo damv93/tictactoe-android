@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.damv93.tictactoe.R
 import com.damv93.tictactoe.databinding.FragmentTicTactToeBoardBinding
+import com.damv93.tictactoe.databinding.LayoutTicTacToeBoardCellBinding
+import com.damv93.tictactoe.databinding.LayoutTicTacToeBoardRowBinding
 import com.damv93.tictactoe.game.model.TicTacToeBoardState
 import com.damv93.tictactoe.game.viewmodel.TicTacToeBoardViewModel
 
@@ -41,16 +41,24 @@ class TicTacToeBoardFragment : Fragment() {
     }
 
     private fun drawBoard(board: List<List<String>>) {
-        with(binding.tableLayoutTicTacToeBoard) {
-            removeAllViews()
-            board.forEach { row ->
-                val rowView = TableRow(context)
-                row.forEach { cell ->
-                    val cellView = TextView(context)
-                    cellView.text = cell
-                    rowView.addView(cellView)
+        val boardView = binding.tableLayoutTicTacToeBoard
+        boardView.removeAllViews()
+        board.forEachIndexed { i, row ->
+            val rowBinding = LayoutTicTacToeBoardRowBinding.inflate(
+                layoutInflater,
+                boardView,
+                true
+            )
+            row.forEachIndexed { j, cell ->
+                val cellBinding = LayoutTicTacToeBoardCellBinding.inflate(
+                    layoutInflater,
+                    rowBinding.root,
+                    true
+                )
+                cellBinding.root.text = cell
+                cellBinding.root.setOnClickListener {
+                    viewModel.makeMove(i to j)
                 }
-                addView(rowView)
             }
         }
     }
