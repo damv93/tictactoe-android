@@ -16,3 +16,4 @@ rootProject.name = "Tic Tac Toe"
 include ':app'
 include ':domain'
 include ':libs:base'
+include ':libs:common'

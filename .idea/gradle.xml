@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/base" />
+            <option value="$PROJECT_DIR$/libs/common" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
