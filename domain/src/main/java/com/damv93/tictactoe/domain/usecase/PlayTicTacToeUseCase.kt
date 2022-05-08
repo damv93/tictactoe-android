@@ -1,7 +1,7 @@
 package com.damv93.tictactoe.domain.usecase
 
 import com.damv93.tictactoe.domain.usecase.model.TicTacToeGame
-import com.damv93.tictactoe.domain.usecase.model.TicTacToeGameState
+import com.damv93.tictactoe.domain.usecase.model.TicTacToeGameStatus
 import com.damv93.tictactoe.domain.usecase.model.TicTacToePlayer
 
 class PlayTicTacToeUseCase {
@@ -11,7 +11,7 @@ class PlayTicTacToeUseCase {
     }
 
     private var board = Array(BOARD_SIZE) { Array<TicTacToePlayer?>(BOARD_SIZE) { null } }
-    private var gameState: TicTacToeGameState = TicTacToeGameState.InProgress
+    private var gameStatus: TicTacToeGameStatus = TicTacToeGameStatus.InProgress
     private var moveCount = 0
     private var currentPlayer = TicTacToePlayer.X
 
@@ -19,13 +19,13 @@ class PlayTicTacToeUseCase {
         return TicTacToeGame(
             board,
             currentPlayer,
-            gameState
+            gameStatus
         )
     }
 
     fun makeMove(pos: Pair<Int, Int>): TicTacToeGame {
 
-        if (gameState != TicTacToeGameState.InProgress) {
+        if (gameStatus != TicTacToeGameStatus.InProgress) {
             throw GameIsOverException()
         }
 
@@ -47,15 +47,15 @@ class PlayTicTacToeUseCase {
         }
 
         val boardSize = board.size
-        gameState = when {
+        gameStatus = when {
             row == boardSize || col == boardSize || diag == boardSize || rdiag == boardSize -> {
-                TicTacToeGameState.Win(winner = currentPlayer)
+                TicTacToeGameStatus.Win(winner = currentPlayer)
             }
             moveCount == boardSize * boardSize -> {
-                TicTacToeGameState.Draw
+                TicTacToeGameStatus.Draw
             }
             else -> {
-                TicTacToeGameState.InProgress
+                TicTacToeGameStatus.InProgress
             }
         }
 
@@ -67,11 +67,12 @@ class PlayTicTacToeUseCase {
         return getGameInfo()
     }
 
-    fun resetGame(firstPlayer: TicTacToePlayer) {
+    fun restartGame(firstPlayer: TicTacToePlayer): TicTacToeGame {
         board = Array(BOARD_SIZE) { Array(BOARD_SIZE) { null } }
-        gameState = TicTacToeGameState.InProgress
+        gameStatus = TicTacToeGameStatus.InProgress
         moveCount = 0
         currentPlayer = firstPlayer
+        return getGameInfo()
     }
 
     class GameIsOverException : Exception()
