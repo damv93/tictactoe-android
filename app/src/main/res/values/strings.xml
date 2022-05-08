@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
-
-    <!-- Tic Tac Toe Board -->
-    <string name="ticTacToeBoard_playerTurn">%s Turn</string>
+    
+    <string name="ticTacToeGame_playerTurn">%s Turn</string>
+    <string name="ticTacToeGame_restartGame">Restart game</string>
+    <string name="ticTacToeGameResult_player_x">X</string>
+    <string name="ticTacToeGameResult_player_o">O</string>
+    <string name="ticTacToeGameResult_draw">Draw</string>
+    <string name="ticTacToeGameResult_winner">Winner!</string>
 </resources>

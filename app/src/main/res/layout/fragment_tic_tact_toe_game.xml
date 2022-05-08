@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    tools:context=".game.TicTacToeGameFragment">
+
+    <TextView
+        android:id="@+id/textView_ticTacToeGame_playerTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="?textAppearanceHeadline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/ticTacToeGame_playerTurn" />
+
+    <TableLayout
+        android:id="@+id/tableLayout_ticTacToeGame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintTop_toBottomOf="@id/textView_ticTacToeGame_playerTurn"
+        app:layout_constraintBottom_toTopOf="@id/button_ticTacToeGame_restartGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        layout="@layout/layout_tic_tac_toe_game_result"
+        android:id="@+id/view_ticTacToeGame_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_ticTacToeGame_restartGame" />
+
+    <Button
+        style="?materialButtonOutlinedStyle"
+        android:id="@+id/button_ticTacToeGame_restartGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ticTacToeGame_restartGame"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

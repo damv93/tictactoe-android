@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_tic_tac_toe_game"
-    app:startDestination="@id/fragment_ticTacToeBoard">
+    app:startDestination="@id/fragment_ticTacToeGame">
 
     <fragment
-        android:id="@+id/fragment_ticTacToeBoard"
-        android:name="com.damv93.tictactoe.game.TicTacToeBoardFragment"
-        android:label="TicTacToeBoardFragment"
-        tools:layout="@layout/fragment_tic_tact_toe_board" />
+        android:id="@+id/fragment_ticTacToeGame"
+        android:name="com.damv93.tictactoe.game.TicTacToeGameFragment"
+        android:label="TicTacToeGameFragment"
+        tools:layout="@layout/fragment_tic_tact_toe_game" />
 
 </navigation>
