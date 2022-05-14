@@ -6,6 +6,6 @@
     android:layout_weight="1"
     android:gravity="center"
     android:textAppearance="?textAppearanceHeadline2"
-    android:background="@drawable/tic_tac_toe_board_cell_background"
+    android:background="@drawable/tic_tac_toe_board_cell_border"
     tools:layout_width="match_parent"
     tools:text="X" />

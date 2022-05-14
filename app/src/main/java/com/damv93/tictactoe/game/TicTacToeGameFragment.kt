@@ -51,7 +51,7 @@ class TicTacToeGameFragment : Fragment() {
     }
 
     private fun showBoard(state: TicTacToeGameState) {
-        with(binding.tableLayoutTicTacToeGameBoard) {
+        with(binding.viewTicTacToeGameBoard.tableLayoutTicTacToeGameBoard) {
             isVisible = state.isBoardVisible
             if (!isVisible) return
             drawBoard(state.board)
@@ -59,7 +59,7 @@ class TicTacToeGameFragment : Fragment() {
     }
 
     private fun drawBoard(board: List<List<String>>) {
-        with(binding.tableLayoutTicTacToeGameBoard) {
+        with(binding.viewTicTacToeGameBoard.tableLayoutTicTacToeGameBoard) {
             removeAllViews()
             board.forEachIndexed { i, row ->
                 val rowBinding = LayoutTicTacToeBoardRowBinding.inflate(

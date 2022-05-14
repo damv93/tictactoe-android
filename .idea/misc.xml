@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/fragment_tic_tact_toe_game.xml" value="0.18" />
         <entry key="app/src/main/res/layout/layout_tic_tac_toe_board_cell.xml" value="0.16305329719963865" />
         <entry key="app/src/main/res/layout/layout_tic_tac_toe_board_row.xml" value="0.16305329719963865" />
+        <entry key="app/src/main/res/layout/layout_tic_tac_toe_game_board.xml" value="0.16305329719963865" />
         <entry key="app/src/main/res/layout/layout_tic_tac_toe_game_result.xml" value="0.16305329719963865" />
       </map>
     </option>
