@@ -13,7 +13,8 @@ class PlayTicTacToeUseCase {
     private var board = Array(BOARD_SIZE) { Array<TicTacToePlayer?>(BOARD_SIZE) { null } }
     private var gameStatus: TicTacToeGameStatus = TicTacToeGameStatus.InProgress
     private var moveCount = 0
-    private var currentPlayer = TicTacToePlayer.X
+    private var firstPlayer = TicTacToePlayer.X
+    private var currentPlayer = firstPlayer
 
     fun getGameInfo(): TicTacToeGame {
         return TicTacToeGame(
@@ -59,20 +60,27 @@ class PlayTicTacToeUseCase {
             }
         }
 
-        currentPlayer = when (currentPlayer) {
-            TicTacToePlayer.X -> TicTacToePlayer.O
-            TicTacToePlayer.O -> TicTacToePlayer.X
-        }
+        currentPlayer = togglePlayer(currentPlayer)
 
         return getGameInfo()
     }
 
-    fun restartGame(firstPlayer: TicTacToePlayer): TicTacToeGame {
+    fun restartGame(): TicTacToeGame {
         board = Array(BOARD_SIZE) { Array(BOARD_SIZE) { null } }
+        if (gameStatus != TicTacToeGameStatus.InProgress) {
+            firstPlayer = togglePlayer(firstPlayer)
+        }
+        currentPlayer = firstPlayer
         gameStatus = TicTacToeGameStatus.InProgress
         moveCount = 0
-        currentPlayer = firstPlayer
         return getGameInfo()
+    }
+
+    private fun togglePlayer(player: TicTacToePlayer): TicTacToePlayer {
+        return when (player) {
+            TicTacToePlayer.X -> TicTacToePlayer.O
+            TicTacToePlayer.O -> TicTacToePlayer.X
+        }
     }
 
     class GameIsOverException : Exception()

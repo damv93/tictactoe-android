@@ -250,9 +250,34 @@ class PlayTicTacToeUseCaseTest {
     }
 
     @Test
-    fun `given game status is 'Win', when game is restarted, then board is empty and first player is set correctly and status is 'In progress'`() {
+    fun `given game is in progress, when game is restarted, then board is empty and first player does not change and status is 'In progress'`() {
         // given
-        var game: TicTacToeGame? = null
+        var game = playTicTacToeUseCase.getGameInfo()
+        val firstPlayer = game.currentPlayer
+        val moves = listOf(
+            0 to 0,
+            0 to 1,
+            1 to 1
+        )
+        for (move in moves) {
+            game = playTicTacToeUseCase.makeMove(move)
+        }
+        assert(game.status is TicTacToeGameStatus.InProgress)
+
+        // when
+        game = playTicTacToeUseCase.restartGame()
+
+        // then
+        assert(game.board.all { row -> row.all { it == null } })
+        assert(game.currentPlayer == firstPlayer)
+        assert(game.status == TicTacToeGameStatus.InProgress)
+    }
+
+    @Test
+    fun `given game is over, when game is restarted, then board is empty and first player changes and status is 'In progress'`() {
+        // given
+        var game = playTicTacToeUseCase.getGameInfo()
+        val firstPlayer = game.currentPlayer
         val moves = listOf(
             0 to 0,
             0 to 1,
@@ -261,16 +286,16 @@ class PlayTicTacToeUseCaseTest {
             2 to 2
         )
         for (move in moves) {
-           game = playTicTacToeUseCase.makeMove(move)
+            game = playTicTacToeUseCase.makeMove(move)
         }
-        assert(game?.status is TicTacToeGameStatus.Win)
+        assert(game.status is TicTacToeGameStatus.Win)
 
         // when
-        game = playTicTacToeUseCase.restartGame(TicTacToePlayer.O)
+        game = playTicTacToeUseCase.restartGame()
 
         // then
         assert(game.board.all { row -> row.all { it == null } })
-        assert(game.currentPlayer == TicTacToePlayer.O)
+        assert(game.currentPlayer != firstPlayer)
         assert(game.status == TicTacToeGameStatus.InProgress)
     }
 
