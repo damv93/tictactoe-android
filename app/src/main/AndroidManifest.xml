@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
         <activity
-            android:name=".MainActivity"
+            android:name=".TicTacToeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

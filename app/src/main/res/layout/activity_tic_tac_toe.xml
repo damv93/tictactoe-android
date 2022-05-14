@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navHostFragment_main"
+    android:id="@+id/navHostFragment_ticTacToe_game"
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:navGraph="@navigation/nav_graph_tic_tac_toe_game"
-    tools:context=".MainActivity" />
+    tools:context=".TicTacToeActivity" />
