@@ -38,17 +38,12 @@ class TicTacToeGameViewModel : BaseViewModel<TicTacToeGameState>() {
     }
 
     private fun setGameState(game: TicTacToeGame) {
-        val gameResult = game.status.toResultModel()
-        val isGameOver = gameResult != null
         state = state.copy(
-            isPlayerTurnVisible = !isGameOver,
             playerTurn = game.currentPlayer.name,
-            isBoardVisible = !isGameOver,
             board = game.board.map { row ->
                 row.map { it?.name ?: "" }
             },
-            isResultVisible = isGameOver,
-            result = gameResult
+            result = game.status.toResultModel()
         )
     }
 }

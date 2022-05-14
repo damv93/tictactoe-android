@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
+    android:animateLayoutChanges="true"
     tools:context=".game.TicTacToeGameFragment">
 
     <TextView
@@ -36,10 +37,8 @@
         layout="@layout/layout_tic_tac_toe_game_result"
         android:id="@+id/view_ticTacToeGame_result"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_ticTacToeGame_restartGame" />
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
 
     <Button
         style="?materialButtonOutlinedStyle"
