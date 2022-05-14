@@ -31,6 +31,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <View
+        android:id="@+id/view_ticTacToeGame_boardBorder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/tic_tac_toe_game_board_background"
+        app:layout_constraintTop_toTopOf="@id/tableLayout_ticTacToeGame_board"
+        app:layout_constraintBottom_toBottomOf="@id/tableLayout_ticTacToeGame_board"
+        app:layout_constraintStart_toStartOf="@id/tableLayout_ticTacToeGame_board"
+        app:layout_constraintEnd_toEndOf="@id/tableLayout_ticTacToeGame_board" />
+
     <include
         layout="@layout/layout_tic_tac_toe_game_result"
         android:id="@+id/view_ticTacToeGame_result"
