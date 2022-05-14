@@ -8,8 +8,6 @@ import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.damv93.libs.common.extensions.gone
-import com.damv93.libs.common.extensions.visible
 import com.damv93.tictactoe.R
 import com.damv93.tictactoe.databinding.FragmentTicTactToeGameBinding
 import com.damv93.tictactoe.databinding.LayoutTicTacToeBoardCellBinding
@@ -30,55 +28,69 @@ class TicTacToeGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.observableState.observe(viewLifecycleOwner, ::onStateChange)
+        setRestartGameButtonOnClickListener()
+    }
+
+    private fun setRestartGameButtonOnClickListener() {
+        binding.buttonTicTacToeGameRestartGame.setOnClickListener {
+            viewModel.restartGame()
+        }
     }
 
     private fun onStateChange(state: TicTacToeGameState) {
-        setPlayerTurn(state.currentPlayer)
-        drawBoard(state.board)
-        showResult(state)
+        showPlayerTurn(state)
+        showBoard(state)
+        showGameResult(state)
     }
 
-    private fun setPlayerTurn(currentPlayer: String) {
-        binding.textViewTicTacToeGamePlayerTurn.text = getString(
-            R.string.ticTacToeGame_playerTurn,
-            currentPlayer
-        )
+    private fun showPlayerTurn(state: TicTacToeGameState) {
+        with(binding.textViewTicTacToeGamePlayerTurn) {
+            isVisible = state.isPlayerTurnVisible
+            text = getString(R.string.ticTacToeGame_playerTurn, state.playerTurn)
+        }
+    }
+
+    private fun showBoard(state: TicTacToeGameState) {
+        with(binding.tableLayoutTicTacToeGameBoard) {
+            isVisible = state.isBoardVisible
+            if (!isVisible) return
+            drawBoard(state.board)
+        }
     }
 
     private fun drawBoard(board: List<List<String>>) {
-        val boardView = binding.tableLayoutTicTacToeGame
-        boardView.removeAllViews()
-        board.forEachIndexed { i, row ->
-            val rowBinding = LayoutTicTacToeBoardRowBinding.inflate(
-                layoutInflater,
-                boardView,
-                true
-            )
-            row.forEachIndexed { j, cell ->
-                val cellBinding = LayoutTicTacToeBoardCellBinding.inflate(
+        with(binding.tableLayoutTicTacToeGameBoard) {
+            removeAllViews()
+            board.forEachIndexed { i, row ->
+                val rowBinding = LayoutTicTacToeBoardRowBinding.inflate(
                     layoutInflater,
-                    rowBinding.root,
+                    this,
                     true
                 )
-                cellBinding.root.text = cell
-                cellBinding.root.setOnClickListener {
-                    viewModel.makeMove(i to j)
+                row.forEachIndexed { j, cell ->
+                    val cellBinding = LayoutTicTacToeBoardCellBinding.inflate(
+                        layoutInflater,
+                        rowBinding.root,
+                        true
+                    )
+                    cellBinding.root.text = cell
+                    cellBinding.root.setOnClickListener {
+                        viewModel.makeMove(i to j)
+                    }
                 }
             }
         }
     }
 
-    private fun showResult(state: TicTacToeGameState) {
-        state.showResult?.consume()?.let { result ->
-            val winnerId = result.winnerId
-            binding.textViewTicTacToeGamePlayerTurn.gone()
-            binding.tableLayoutTicTacToeGame.gone()
-            with(binding.viewTicTacToeGameResult) {
-                root.visible()
-                linearLayoutTicTacToeGameResultPlayers.forEach {
-                    it.isVisible = winnerId == null || winnerId == it.id
-                }
-                textViewTicTacToeGameResult.setText(result.nameId)
+    private fun showGameResult(state: TicTacToeGameState) {
+        val result = state.result
+        val resultName = result?.nameId?.let { getString(it) } ?: ""
+        val winnerId = result?.winnerId
+        with(binding.viewTicTacToeGameResult) {
+            root.isVisible = state.isResultVisible
+            textViewTicTacToeGameResult.text = resultName
+            linearLayoutTicTacToeGameResultPlayers.forEach {
+                it.isVisible = winnerId == null || winnerId == it.id
             }
         }
     }

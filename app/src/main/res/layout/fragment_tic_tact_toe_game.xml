@@ -20,7 +20,7 @@
         tools:text="@string/ticTacToeGame_playerTurn" />
 
     <TableLayout
-        android:id="@+id/tableLayout_ticTacToeGame"
+        android:id="@+id/tableLayout_ticTacToeGame_board"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth="true"

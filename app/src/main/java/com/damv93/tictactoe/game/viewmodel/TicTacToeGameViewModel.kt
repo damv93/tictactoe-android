@@ -1,7 +1,6 @@
 package com.damv93.tictactoe.game.viewmodel
 
 import com.damv93.libs.base.viewmodel.BaseViewModel
-import com.damv93.libs.common.viewstate.SingleEvent
 import com.damv93.tictactoe.domain.usecase.PlayTicTacToeUseCase
 import com.damv93.tictactoe.domain.usecase.PlayTicTacToeUseCase.GameIsOverException
 import com.damv93.tictactoe.domain.usecase.PlayTicTacToeUseCase.InvalidPositionException
@@ -33,14 +32,23 @@ class TicTacToeGameViewModel : BaseViewModel<TicTacToeGameState>() {
         }
     }
 
+    fun restartGame() {
+        val game = playTicTacToeUseCase.restartGame()
+        setGameState(game)
+    }
+
     private fun setGameState(game: TicTacToeGame) {
-        val result = game.status.toResultModel()
+        val gameResult = game.status.toResultModel()
+        val isGameOver = gameResult != null
         state = state.copy(
+            isPlayerTurnVisible = !isGameOver,
+            playerTurn = game.currentPlayer.name,
+            isBoardVisible = !isGameOver,
             board = game.board.map { row ->
                 row.map { it?.name ?: "" }
             },
-            currentPlayer = game.currentPlayer.name,
-            showResult = result?.let { SingleEvent(it) }
+            isResultVisible = isGameOver,
+            result = gameResult
         )
     }
 }
