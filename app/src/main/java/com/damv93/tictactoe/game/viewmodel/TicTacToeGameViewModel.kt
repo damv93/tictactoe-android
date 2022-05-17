@@ -15,10 +15,10 @@ class TicTacToeGameViewModel : BaseViewModel<TicTacToeGameState>() {
 
     init {
         state = initialState
-        getGameInfo()
+        getInitialGameInfo()
     }
 
-    private fun getGameInfo() {
+    private fun getInitialGameInfo() {
         val game = playTicTacToeUseCase.getGameInfo()
         setGameState(game)
     }
@@ -40,9 +40,7 @@ class TicTacToeGameViewModel : BaseViewModel<TicTacToeGameState>() {
     private fun setGameState(game: TicTacToeGame) {
         state = state.copy(
             playerTurn = game.currentPlayer.name,
-            board = game.board.map { row ->
-                row.map { it?.name ?: "" }
-            },
+            board = game.board.map { row -> row.map { it?.name ?: "" } },
             result = game.status.toResultModel()
         )
     }

@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
+import androidx.core.view.isEmpty
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -41,7 +44,7 @@ class TicTacToeGameFragment : Fragment() {
 
     private fun onStateChange(state: TicTacToeGameState) {
         showPlayerTurn(state.playerTurn)
-        drawBoard(state.board)
+        showBoard(state.board)
         showGameResult(state.result)
     }
 
@@ -51,9 +54,18 @@ class TicTacToeGameFragment : Fragment() {
         }
     }
 
+    private fun showBoard(board: List<List<String>>) {
+        with(binding.viewTicTacToeGameBoard.tableLayoutTicTacToeGameBoard) {
+            if (isEmpty()) {
+                drawBoard(board)
+            } else {
+                updateBoard(board)
+            }
+        }
+    }
+
     private fun drawBoard(board: List<List<String>>) {
         with(binding.viewTicTacToeGameBoard.tableLayoutTicTacToeGameBoard) {
-            removeAllViews()
             board.forEachIndexed { i, row ->
                 val rowBinding = LayoutTicTacToeBoardRowBinding.inflate(
                     layoutInflater,
@@ -75,16 +87,26 @@ class TicTacToeGameFragment : Fragment() {
         }
     }
 
+    private fun updateBoard(board: List<List<String>>) {
+        with(binding.viewTicTacToeGameBoard.tableLayoutTicTacToeGameBoard) {
+            forEachIndexed { i, rowView ->
+                (rowView as ViewGroup).forEachIndexed { j, cellView ->
+                    (cellView as TextView).text = board[i][j]
+                }
+            }
+        }
+    }
+
     private fun showGameResult(result: TicTacToeResultModel?) {
         with(binding.viewTicTacToeGameResult) {
             root.isInvisible = result == null
-            if (root.isInvisible) return
-            val resultName = result?.nameId?.let { getString(it) } ?: ""
-            val winnerId = result?.winnerId
-            textViewTicTacToeGameResult.text = resultName
+            if (result == null) return
+            textViewTicTacToeGameResult.setText(result.nameId)
+            val winnerId = result.winnerId
             linearLayoutTicTacToeGameResultPlayers.forEach {
                 it.isVisible = winnerId == null || winnerId == it.id
             }
         }
     }
+
 }
