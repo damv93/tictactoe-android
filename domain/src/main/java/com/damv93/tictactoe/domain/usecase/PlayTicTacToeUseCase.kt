@@ -18,9 +18,10 @@ class PlayTicTacToeUseCase {
 
     fun getGameInfo(): TicTacToeGame {
         return TicTacToeGame(
-            board,
-            currentPlayer,
-            gameStatus
+            // An immutable list is returned instead of array so board data cannot be modified outside
+            board = board.map { rowArray -> rowArray.toList() },
+            currentPlayer = currentPlayer,
+            status = gameStatus
         )
     }
 
