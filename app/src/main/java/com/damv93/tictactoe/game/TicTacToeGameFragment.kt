@@ -32,7 +32,7 @@ class TicTacToeGameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.observableState.observe(viewLifecycleOwner, ::onStateChange)
+        viewModel.observableState.observe(viewLifecycleOwner, ::onStateChanged)
         setRestartGameButtonOnClickListener()
     }
 
@@ -42,7 +42,12 @@ class TicTacToeGameFragment : Fragment() {
         }
     }
 
-    private fun onStateChange(state: TicTacToeGameState) {
+    /**
+     * This method is the only entry point where the UI is updated to show the new state.
+     * This helps finding any issues in the UI since this is the only place to look.
+     * No other methods can change the UI.
+     */
+    private fun onStateChanged(state: TicTacToeGameState) {
         showPlayerTurn(state.playerTurn)
         showBoard(state.board)
         showGameResult(state.result)
