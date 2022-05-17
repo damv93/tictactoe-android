@@ -3,18 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/tic_tac_toe_board_cell_background.xml" value="0.2075" />
-        <entry key="app/src/main/res/drawable/tic_tac_toe_game_board_background.xml" value="0.2075" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1828774062816616" />
-        <entry key="app/src/main/res/layout/activity_tic_tac_toe.xml" value="0.16847335140018066" />
-        <entry key="app/src/main/res/layout/fragment_tic_tac_toe_game.xml" value="0.16305329719963865" />
-        <entry key="app/src/main/res/layout/fragment_tic_tac_toe_result.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_tic_tact_toe_board.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_tic_tact_toe_game.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/layout_tic_tac_toe_board_cell.xml" value="0.16305329719963865" />
-        <entry key="app/src/main/res/layout/layout_tic_tac_toe_board_row.xml" value="0.16305329719963865" />
-        <entry key="app/src/main/res/layout/layout_tic_tac_toe_game_board.xml" value="0.16305329719963865" />
-        <entry key="app/src/main/res/layout/layout_tic_tac_toe_game_result.xml" value="0.16305329719963865" />
+        <entry key="app/src/main/res/layout/fragment_tic_tact_toe_game.xml" value="0.1828774062816616" />
       </map>
     </option>
   </component>
