@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/14865130/169729034-b2a509fc-1a4e-4833-
 
 
 ### Next steps
-- Reactive Paradigm using Flow + Jetpack Compose.
+- Reactive Programming using Flow + Jetpack Compose.
 - Feature to manage scores. This will demonstrate the implementation of Data layer to store scores.
 - Custom View for Tic Tac Toe Board.
 - Improve game experience with animations.
