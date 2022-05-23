@@ -14,10 +14,11 @@ https://user-images.githubusercontent.com/14865130/169729034-b2a509fc-1a4e-4833-
 
 
 ### Next steps
-- Implement Reactive Paradigm using Flow + Jetpack Compose.
-- Implement feature to manage scores. This will demonstrate the implementation of Data layer to store scores.
-- Implement custom View for Tic Tac Toe Board.
-- Improve game experience by implementing animations.
+- Reactive Paradigm using Flow + Jetpack Compose.
+- Feature to manage scores. This will demonstrate the implementation of Data layer to store scores.
+- Custom View for Tic Tac Toe Board.
+- Improve game experience with animations.
 - Support landscape and different screen sizes.
-- Add Dependency Injection with Hilt.
+- Dependency Injection with Hilt.
 - ViewModel Unit Tests.
+- UI testing with Espresso.
